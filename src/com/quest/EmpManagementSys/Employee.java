@@ -42,7 +42,7 @@ class Employee {
     public double calculateAverageMonthlySalary() {
         return calculateTotalSalary() / 12; // it will divide total salary by 12
     }
- // Bounus Calculator
+ // Bonus Calculator
     public double calculateBonus() {
         return baseSalary * 0.1; // returns 10% of base-sal as bonus
     }

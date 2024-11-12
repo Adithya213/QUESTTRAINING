@@ -1,13 +1,27 @@
 package com.quest.EmpManagementSys;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter the number of employees: ");
-        int noOfEmp = scanner.nextInt();
+        int noOfEmp = 0;
+        // Input validation for number of employees
+        while (true) {
+            try {
+                System.out.print("Enter the number of employees: ");
+                noOfEmp = scanner.nextInt();
+                if (noOfEmp <= 0) {
+                    System.out.println("Number of employees should be positive. Try again.");
+                    continue;
+                }
+                break; // Exit loop if input is valid
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                scanner.nextLine();
+            }
+        }
         scanner.nextLine();  // Consume newline
 
         Employee[] employees = new Employee[noOfEmp]; //creating array to store emp obj(details).so Employee class is the datatype
@@ -15,9 +29,23 @@ public class Main {
         for (int i = 0; i < noOfEmp; i++) {
             System.out.print("Enter the name of employee " + (i + 1) + ": ");
             String name = scanner.nextLine();
-            System.out.print("Enter the base salary for " + name + ": ");
-            double baseSalary = scanner.nextDouble();
-            scanner.nextLine(); // consume newline
+            // Input validation for base salary
+            double baseSalary = 0;
+            while (true) {
+                try {
+                    System.out.print("Enter the base salary for " + name + ": ");
+                    baseSalary = scanner.nextDouble();
+                    if (baseSalary < 0) {
+                        System.out.println("Base salary should be non-negative. Try again.");
+                        continue;
+                    }
+                    break; // Exit loop if input is valid
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a numeric value.");
+                    scanner.nextLine(); // Clear the invalid input
+                }
+            }
+            scanner.nextLine();
 
             Employee employee = new Employee(name, baseSalary); //creating object and pass name and baseSal.
             for (int month = 1; month <= 12; month++) {

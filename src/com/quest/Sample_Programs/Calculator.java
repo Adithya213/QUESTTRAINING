@@ -1,14 +1,10 @@
 package com.quest.Sample_Programs;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class Calculator {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         double iNum = 0;
-
         while (true) {
             try {
                 System.out.print("Enter the initial number: ");
@@ -106,13 +102,13 @@ public class Calculator {
             String choice = scanner.next();
 
             if (choice.equalsIgnoreCase("yes")) {
-                continue;
+                continue; //move to next iteration
             } else if (choice.equalsIgnoreCase("no")) {
                 System.out.println("Exiting the calculator.");
                 break;
             } else {
                 System.out.println("Invalid input. Please enter 'yes' or 'no'.");
             }
-        }
+        }//while end
     }
 }

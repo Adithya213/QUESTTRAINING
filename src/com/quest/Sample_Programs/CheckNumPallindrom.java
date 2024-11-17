@@ -11,9 +11,9 @@ public class CheckNumPallindrom {
         int originalNo = n;
         int reversedNo = 0;
         while (n != 0) {
-            int digit = n % 10;
-            reversedNo = reversedNo * 10 + digit;
-            n /= 10;
+            int digit = n % 10;  //121%10 =1 to extract last digit
+            reversedNo = reversedNo * 10 + digit; // 0*10+1=1
+            n /= 10;           // 121/10 = 12 to remove last digit
         }
 
         if (originalNo == reversedNo) {

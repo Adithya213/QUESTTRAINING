@@ -7,16 +7,17 @@ public class FibonacciSeries {
         System.out.print("Enter the no. of terms: ");
         int n = sc.nextInt();
          if(n<0){
-             System.out.println("Invalid no.");
-             return;
+             System.out.println("Invalid no. enter a positive no");
+             return;//since main() tyoe is void so we cannot return anything. so simply write return
          }
-        int firstTerm = 0, secondTerm = 1;
+        int firstTerm = 0;
+         int secondTerm = 1;
         System.out.print("Fibonacci Series: " + firstTerm + ", " + secondTerm);
 
         for (int i = 3; i <= n; i++) {
-            int nextTerm = firstTerm + secondTerm;
+            int nextTerm = firstTerm + secondTerm;//0+1
             System.out.print(", " + nextTerm);
-            firstTerm = secondTerm;
+            firstTerm = secondTerm;//swap
             secondTerm = nextTerm;
         }
     }

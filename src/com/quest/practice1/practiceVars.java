@@ -57,8 +57,8 @@ stringMethods();
 
         System.out.println(s3.length());
         System.out.println(s3==s2);
-        System.out.println(s3.equalsIgnoreCase(s2));
-        System.out.println(s3.equals(s2));//it will check content of s1 and s2
+        System.out.println(s3.equalsIgnoreCase(s4));
+        System.out.println(s3.equals(s4));//it will check content of s1 and s2
         System.out.println(s4==s3);
         System.out.println(s1.equals(s2));
         System.out.println(s1.equalsIgnoreCase(s2));

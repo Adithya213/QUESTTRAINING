@@ -1,4 +1,4 @@
-package com.quest.Day2;
+package com.quest.Day2_StudentGrade;
 
 public class GradeCalculator {
 

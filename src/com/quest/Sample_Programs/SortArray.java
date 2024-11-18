@@ -1,6 +1,4 @@
-package com.quest.practice1;
-
-import java.util.Arrays;
+package com.quest.Sample_Programs;
 
 public class SortArray {
 
@@ -32,4 +30,14 @@ public class SortArray {
         }
     }
 }
+/*
+create a method that accepts the int[] array,
+sort this int[] array and return the new sorted array or same array if you sorted the same array in place.
+and finally print the sorted array in the new method with the name printArray(int[] arr)
 
+{
+{1,2,3,4,5,6}
+{7,8,9,10,11,12}
+{12,14,15,16,17,18}
+}
+*/

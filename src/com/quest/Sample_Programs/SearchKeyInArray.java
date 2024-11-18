@@ -1,4 +1,4 @@
-package com.quest.practice1;
+package com.quest.Sample_Programs;
 
 public class SearchKeyInArray {
     public static int searchValue(int[] array, int key) {
@@ -18,3 +18,9 @@ public class SearchKeyInArray {
         System.out.println("The value " + value + "is at index : " + index);
     }
 }
+/*
+create a method to search a int value from the int[] array.
+Method should accept both int[] and int to search and return the index of the value to search.
+If the value is not found , return -1
+
+ */

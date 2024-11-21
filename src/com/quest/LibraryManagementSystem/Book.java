@@ -1,13 +1,12 @@
 package com.quest.LibraryManagementSystem;
 
-public abstract class Book {  //encapsulation
+public abstract class Book {
     private String ISBN;
     private String title;
     private String author;
     private int publicationYear;
     private boolean isAvailable;
 
-    // Constructor
     public Book(String ISBN, String title, String author, int publicationYear) {
         this.ISBN = ISBN;
         this.title = title;
@@ -16,7 +15,6 @@ public abstract class Book {  //encapsulation
         this.isAvailable = true;
     }
 
-    //getter()
     public String getISBN() {
         return ISBN;
     }
@@ -33,12 +31,11 @@ public abstract class Book {  //encapsulation
     public boolean isAvailable() {
         return isAvailable;
     }
-    //setter()
+
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
 
-    // method displaying details
     public abstract void displayDetails();
 }
 

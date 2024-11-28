@@ -64,23 +64,23 @@ public class Tsms implements TSMSInterface {
 //method to generate bill
     @Override
     public void generateBill(int subscriberId) {
-        Subscriber subscriber = findSubscriberById(subscriberId);
+        Subscriber subscriber = findSubscriberById(subscriberId); //check if sub exist & is a postpaid user
         if (subscriber == null || !subscriber.getPlanType().equalsIgnoreCase("Postpaid")) {
             System.out.println("Subscriber is either not found or is not a postpaid user.");
             return;
         }
 
-        List<CallRecord> records = callHistory.get(subscriberId);
-        if (records == null || records.isEmpty()) {
+        List<CallRecord> records = callHistory.get(subscriberId);//add callhistory to callrecord list
+        if (records == null || records.isEmpty()) { //check list empty
             System.out.println("No call history found for Subscriber ID " + subscriberId);
             return;
         }
 
         double total = 0;
-        for (CallRecord record : records) {
+        for (CallRecord record : records) { // iterate through callrecord to generate bill
             switch (record.getType().toLowerCase()) {
                 case "local":
-                    total += record.getDuration() * 1;//local - 1/min
+                    total += record.getDuration() * 1;//local  1/min
                     break;
                 case "std":
                     total += record.getDuration() * 2;//std 2/min
@@ -92,41 +92,61 @@ public class Tsms implements TSMSInterface {
         }
         System.out.println("Total Bill for Subscriber ID " + subscriberId + ": ₹" + total);
     }
-
+//method to save datas to file
     @Override
     public void saveData(String filename) {
+        File file = new File(filename);//Create a File object with the given filename
+        System.out.println("File Path: " + file.getAbsolutePath());
+
+        ObjectOutputStream oos = null;
         try {
-            File file = new File(filename);
-            System.out.println("File Path: " + file.getAbsolutePath());
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-                oos.writeObject(subscribers);// saving subscriber list
-                oos.writeObject(callHistory);
-                System.out.println("Data saved successfully!");
-            }
+            oos = new ObjectOutputStream(new FileOutputStream(file));// initialize oos to writing data to file
+            oos.writeObject(subscribers); // serialize & write list of sub to file
+            oos.writeObject(callHistory); //serialize & write callhistory map to file
+            System.out.println("Data saved successfully!");
         } catch (IOException e) {
             System.out.println("Error saving data: " + e.getMessage());
+        } finally {
+            if (oos != null) {
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    System.out.println("Error closing output stream: " + e.getMessage());
+                }
+            }
         }
     }
 
+//method to load datas to file
     @Override
     public void loadData(String filename) {
-        try {
-            File file = new File(filename);
-            System.out.println("File Path: " + file.getAbsolutePath());
-            if (!file.exists()) {
-                System.out.println("No previous data found. Starting fresh.");
-                return;
-            }
+        File file = new File(filename);
+        System.out.println("File Path: " + file.getAbsolutePath());
 
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-                subscribers = (List<Subscriber>) ois.readObject(); //loading subscriber list
-                callHistory = (Map<Integer, List<CallRecord>>) ois.readObject();
-                System.out.println("Data loaded successfully!");
-            }
+        if (!file.exists()) {
+            System.out.println("No previous data found. Starting fresh.");
+            return;
+        }
+
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(file)); //Initialize ois to read data from the file
+            subscribers = (List<Subscriber>) ois.readObject(); // Load sub list by Deserialize the subscribers list
+            callHistory = (Map<Integer, List<CallRecord>>) ois.readObject();//Load call his map by Deserialize call his map
+            System.out.println("Data loaded successfully!");
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error loading data: " + e.getMessage());
+        } finally {
+            if (ois != null) {
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    System.out.println("Error closing input stream: " + e.getMessage());
+                }
+            }
         }
     }
+
 
     private Subscriber findSubscriberById(int id) {
         for (Subscriber s : subscribers) {

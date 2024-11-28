@@ -34,7 +34,7 @@ public class TelecomSubscriberManagementSystemMain {
                         try {
                             System.out.print("Enter Subscriber ID: ");
                             int id = scanner.nextInt();
-                            scanner.nextLine(); // Consume the newline
+                            scanner.nextLine();
                             System.out.print("Enter Name: ");
                             String name = scanner.nextLine();
                             System.out.print("Enter Phone Number: ");
@@ -48,7 +48,7 @@ public class TelecomSubscriberManagementSystemMain {
                             System.out.println("Subscriber added successfully.");
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input! Please enter correct data types.");
-                            scanner.nextLine(); // Clear invalid input
+                            scanner.nextLine();
                         }
                         break;
 
@@ -63,7 +63,7 @@ public class TelecomSubscriberManagementSystemMain {
                             System.out.println("Balance updated successfully.");
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input! Please enter a number for ID and Balance.");
-                            scanner.nextLine(); // Clear invalid input
+                            scanner.nextLine();
                         }
                         break;
 
@@ -75,7 +75,7 @@ public class TelecomSubscriberManagementSystemMain {
                         try {
                             System.out.print("Enter Subscriber ID: ");
                             int id = scanner.nextInt();
-                            scanner.nextLine(); // Consume the newline
+                            scanner.nextLine();
                             System.out.print("Enter Call Type (Local/STD/ISD): ");
                             String type = scanner.nextLine();
                             System.out.print("Enter Call Duration (in minutes): ");
@@ -85,7 +85,7 @@ public class TelecomSubscriberManagementSystemMain {
                             System.out.println("Call logged successfully.");
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input! Please enter correct data types.");
-                            scanner.nextLine(); // Clear invalid input
+                            scanner.nextLine();
                         }
                         break;
 
@@ -96,7 +96,7 @@ public class TelecomSubscriberManagementSystemMain {
                             tsms.viewCallHistory(id);
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input! Subscriber ID must be a number.");
-                            scanner.nextLine(); // Clear invalid input
+                            scanner.nextLine();
                         }
                         break;
 
@@ -107,12 +107,12 @@ public class TelecomSubscriberManagementSystemMain {
                             tsms.generateBill(id);
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input! Subscriber ID must be a number.");
-                            scanner.nextLine(); // Clear invalid input
+                            scanner.nextLine();
                         }
                         break;
 
                     case 7: // Exit
-                        tsms.saveData(filename);
+                        tsms.saveData(filename); //saving data with filename
                         System.out.println("Thank you for using the TSMS!");
                         break;
 
@@ -121,10 +121,10 @@ public class TelecomSubscriberManagementSystemMain {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input! Please enter a valid number for your choice.");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("An unexpected error occurred: " + e.getMessage());
-                e.printStackTrace(); // Optional: Remove in production
+                e.printStackTrace();
             }
         } while (choice != 7);
 
